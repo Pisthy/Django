@@ -1,4 +1,42 @@
-{% extends 'base.html'%}
-{% block content%}
-    <h1> Oi </h1>
+{% extends 'base.html' %}
+{% block content %}
+{% if todos %}
+    <table class="table">
+        <thead>
+            <tr>
+                <tb scope="col">#</tb>
+                <tb scope="col">Title</tb>
+                <tb scope="col">Completed</tb>
+                <tb scope="col">Created At</tb>
+                <tb scope="col">Update</tb>
+                <tb scope="col">Delete</tb>
+            </tr>
+        </thead>
+        <tbody>
+        {% for todo in todos %}
+            {% if todo.completed %}
+                <tr class="table-success">
+                    <td>{{ todo.id }}</td>
+                    <td>{{ todo.title }}</td>
+                    <td>{{ todo.completed }}</td>
+                    <td>{{ todo.created_at }}</td>
+                    <td><a href="#">Update</a></td>
+                    <td><a href="#">Delete</a></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td>{{ todo.id }}</td>
+                    <td>{{ todo.title }}</td>
+                    <td>{{ todo.completed }}</td>
+                    <td>{{ todo.created_at }}</td>
+                    <td><a href="#">Update</a></td>
+                    <td><a href="#">Delete</a></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Não há tarefas.</p>
+{% endif %}
 {% endblock %}
