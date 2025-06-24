@@ -21,8 +21,8 @@
                     <td>{{ todo.title }}</td>
                     <td>{{ todo.completed }}</td>
                     <td>{{ todo.created_at }}</td>
-                    <td><a href="#">Update</a></td>
-                    <td><a href="#">Delete</a></td>
+                    <td><a href="{% url 'update' todo.id %}">Update</a></td>
+                    <td><a href="{% url 'delete' todo.id %}">Delete</a></td>
                 </tr>
             {% else %}
                 <tr>
@@ -30,14 +30,17 @@
                     <td>{{ todo.title }}</td>
                     <td>{{ todo.completed }}</td>
                     <td>{{ todo.created_at }}</td>
-                    <td><a href="#">Update</a></td>
-                    <td><a href="#">Delete</a></td>
+                    <td><a href="{% url 'update' todo.id %}">Update</a></td>
+                    <td><a href="{% url 'delete' todo.id %}">Delete</a></td>
                 </tr>
             {% endif %}
         {% endfor %}
         </tbody>
     </table>
+    <a href="{% url 'adicionar_todo' %}" class="btn btn-primary mt-3">Adicionar nova linha</a>
 {% else %}
-    <p>Não há tarefas.</p>
+    <p>Não há tarefas. <br>
+     <a href="{% url 'adicionar_todo' %}" class="btn btn-primary mt-3">Adicione</a></p>
+
 {% endif %}
 {% endblock %}
